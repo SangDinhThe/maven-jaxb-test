@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.clovis.thang.jaxbtest</groupId>
+  <artifactId>maven-jaxb--test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<java.version>17</java.version>
+  	<maven.compiler.source>${java.version}</maven.compiler.source>
+  	<maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>jakarta.xml.bind</groupId>
+  		<artifactId>jakarta.xml.bind-api</artifactId>
+  		<version>4.0.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.sun.xml.bind</groupId>
+  		<artifactId>jaxb-impl</artifactId>
+  		<version>4.0.5</version>
+  	</dependency>
+  </dependencies>
+  
+  <build>
+  	<plugins>
+		<plugin>
+		  <groupId>org.codehaus.mojo</groupId>
+		  <artifactId>jaxb2-maven-plugin</artifactId>
+		  <version>3.1.0</version>
+		  <executions>
+		  	<execution>
+				<id>xjc1</id>
+				<goals>
+					<goal>xjc</goal>
+				</goals>
+				<configuration>
+					<sources>
+				 		<source>src/main/xsd/metaclasses.xsd</source>
+					</sources>
+					<packageName>com.clovis.cw.genericeditor.gen.metaclasses</packageName>
+				</configuration>
+		  	</execution>
+
+		  	<execution>
+			  	<id>xjc2</id>
+			  	<goals>
+			  		<goal>xjc</goal>
+			  	</goals>
+			  	<configuration>
+					<sources>
+					  	<source>src/main/xsd/uiproperties.xsd</source>
+					</sources>
+					<packageName>com.clovis.cw.genericeditor.gen.uiproperties</packageName>
+					<clearOutputDir>false</clearOutputDir>
+				</configuration>
+		  	</execution>
+		  	
+		  	<execution>
+			  	<id>xjc3</id>
+			  	<goals>
+			  		<goal>xjc</goal>
+			  	</goals>
+			  	<configuration>
+					<sources>
+					  	<source>src/main/xsd/menu.xsd</source>
+					</sources>
+					<packageName>com.clovis.common.utils.menu.gen</packageName>
+					<clearOutputDir>false</clearOutputDir>
+				</configuration>
+		  	</execution>
+		  </executions>
+		</plugin>
+  	</plugins>
+  </build>
+</project>
